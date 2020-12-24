@@ -18,12 +18,12 @@ LOGGER.setLevel(10)
 
 BLACKLIST = ['drive.google.com', 'tor.checker.in', 'youtube.com', 'youtu.be']
 HOME = InlineKeyboardMarkup([
-            [InlineKeyboardButton(text='Format - PDF', callback_data='format')],
-            [InlineKeyboardButton(text='Page - Full', callback_data="page")],
+            [InlineKeyboardButton(text='صيغة - PDF', callback_data='format')],
+            [InlineKeyboardButton(text='نوع الصفحة-كاملة', callback_data="page")],
             # [InlineKeyboardButton(text='Landscape', callback_data="orientation")],
-            [InlineKeyboardButton(text='show additional options ˅', callback_data="options")],
-            [InlineKeyboardButton(text='▫️ start render ▫️', callback_data="render")],
-            [InlineKeyboardButton(text='cancel', callback_data="cancel")]
+            [InlineKeyboardButton(text='رؤية الإعدادات الإضافية ˅', callback_data="options")],
+            [InlineKeyboardButton(text='▫️ يلاااا بلش شغل عموو😡▫️', callback_data="render")],
+            [InlineKeyboardButton(text='غيرت رأيي  بدي الغي🙂', callback_data="cancel")]
                             ])
 
 
@@ -31,11 +31,11 @@ HOME = InlineKeyboardMarkup([
 async def start(_: Client, message: Message) -> None:
     LOGGER.debug(f"USED_CMD --> /start command >> @{message.from_user.username}")
     await message.reply_text(
-        f"<b>Hi {message.from_user.first_name} 👋\n"
-        "I can render website of a given link to either PDF or PNG/JPEG</b>",
+        f"<b>هلووو {message.from_user.first_name} 👋\n"
+        "أناا ابنو لهاد البوت الذكي @Sy404_bot 🙂🙂 فيني حولك أي رابط صفحة انترنت بتعطيني ياه لملف *كتاب إلكتروني PDF* أو لصورة 😌😌😌 .. معلش فوت واشكر المطور من هون @Mr00lucifer مع انو مابيستاهل</b>",
         quote=True,
         reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("❓ About", callback_data="about_cb")
+                InlineKeyboardButton("❓ مين نحن", callback_data="about_cb")
             ]
         ])
     )
@@ -45,14 +45,14 @@ async def start(_: Client, message: Message) -> None:
 async def feedback(_: Client, message: Message) -> None:
     LOGGER.debug(f"USED_CMD --> /about command >> @{message.from_user.username}")
     await message.reply_text(
-        text="This project is open ❤️ source",
+        text="نحن منشتغل لحتى نكون مصدر معلومة مهمة الك او نساعدك سواء ع صفحتنا أو من خلال سكربتاتنا ع التيليجرام❤️",
         reply_markup=InlineKeyboardMarkup([
             [
-                InlineKeyboardButton("👨🏻‍🦯 Source", url="https://github.com/alenpaul2001/Web-Screenshot-Bot"),
-                InlineKeyboardButton("❓ Bug Report", url="https://github.com/alenpaul2001/Web-Screenshot-Bot/issues")],
+                InlineKeyboardButton("👨🏻‍🦯 صفحتنا المفيدة", url="https://www.facebook.com/solu404tion/"),
+                InlineKeyboardButton("حساب المطور فيسبوك🙈", url="https://www.facebook.com/mohammedsjnoube")],
             [InlineKeyboardButton(
-                "🌃 Profile Icon Credit",
-                url="https://www.goodfon.com/wallpaper/art-vector-background-illustration-minimalism-angga-tanta-12.html")]
+                "🌃 البوت الرئيسي ل حلول 404",
+                url="https://t.me/Sy404_bot")]
             ])
     )
 
@@ -81,10 +81,10 @@ async def delete(_: Client, message: Message) -> None:
                 os.remove('walk.txt')
                 LOGGER.debug('DEL__CMD --> status pending >> waiting for user confirmation')
                 await message.reply_text(
-                    text='Do you want to delete?',
+                    text='متأكددد بدك احذف?',
                     reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton(text='Yes', callback_data='deleteyes')],
-                        [InlineKeyboardButton(text='No', callback_data='deleteno')],
+                        [InlineKeyboardButton(text='أي', callback_data='deleteyes')],
+                        [InlineKeyboardButton(text='لا', callback_data='deleteno')],
                     ])
                     )
     else:
@@ -107,4 +107,4 @@ async def send_log(_: Client, message: Message) -> None:
         )
         LOGGER.debug('LOG__CMD --> status sucess >> log send to the sudo_user')
     else:
-        await message.reply_text("file not found")
+        await message.reply_text("خطأ الملف مو موجود")
