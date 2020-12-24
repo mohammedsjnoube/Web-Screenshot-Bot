@@ -34,10 +34,10 @@ async def checker(client: Client, message):
     # https://t.me/Python/774464
     if [x for x in BLACKLIST if x in message.text]:
         LOGGER.debug('LINK_RCV --> link ignored >> blackisted')
-        await message.reply_text("Please Dont Abuse This Service 😭😭")
+        await message.reply_text("رجاء لاتعذبني انا مابحمل من هالموقع 😭😭")
     else:
         msg = await message.reply_text("working", True)
-        await msg.edit(text='Choose the prefered settings', reply_markup=HOME)
+        await msg.edit(text='اختار الاعدادات البدك ياها بيبي 🙂', reply_markup=HOME)
 
 
 @Client.on_callback_query()
@@ -55,7 +55,7 @@ async def cb_(client: Client, callback_query: CallbackQuery, retry=False):
     if cb_data == "render":
         await client.answer_callback_query(
             callback_query.id,
-            text='Processing your request..!'
+            text='عم اشتغل عليه انطور شوي🙈..!'
         )
         await primary_task(client, msg)
     elif cb_data == "splits":
@@ -64,7 +64,7 @@ async def cb_(client: Client, callback_query: CallbackQuery, retry=False):
         current_boolean = msg.reply_markup.inline_keyboard[index_number][0]
         boolean_to_change = 'Split - No' if "Yes" in current_boolean.text else 'Split - Yes'
         msg.reply_markup.inline_keyboard[index_number][0]['text'] = boolean_to_change
-        await msg.edit(text='Choose the prefered settings', reply_markup=msg.reply_markup)
+        await msg.edit(text='اختار الاعدادات البدك ياها بيبي 🙂', reply_markup=msg.reply_markup)
 
     elif cb_data == "page":
         if 'PDF' in msg.reply_markup.inline_keyboard[0][0].text:
@@ -82,11 +82,11 @@ async def cb_(client: Client, callback_query: CallbackQuery, retry=False):
         if 'hide' in options_to_change:
             msg.reply_markup.inline_keyboard.insert(
                 -2,
-                [InlineKeyboardButton(text="resolution | 800x600", callback_data='res')]
+                [InlineKeyboardButton(text="الابعاد | 800x600", callback_data='res')]
             )
             msg.reply_markup.inline_keyboard.insert(
                 -2,
-                [InlineKeyboardButton(text='▫️ site statitics ▫️', callback_data="statics")],
+                [InlineKeyboardButton(text='▫️ حالة الموقع العاطيني ياه🚩▫️', callback_data="statics")],
             )
             if 'PDF' in msg.reply_markup.inline_keyboard[0][0].text:
                 index_to_change = 2
@@ -97,21 +97,21 @@ async def cb_(client: Client, callback_query: CallbackQuery, retry=False):
             for _ in range(2):
                 msg.reply_markup.inline_keyboard.pop(-3)
             msg.reply_markup.inline_keyboard[-3][0]['text'] = options_to_change
-        await msg.edit(text='Choose the prefered settings', reply_markup=msg.reply_markup)
+        await msg.edit(text='اختار الاعدادات البدك ياها بيبي 🙂', reply_markup=msg.reply_markup)
 
     elif cb_data == "res":
         current_res = msg.reply_markup.inline_keyboard[-4][0].text
         if '800' in current_res:
-            res_to_change = "resolution | 1280x720"
+            res_to_change = "الابعاد | 1280x720"
         elif '1280' in current_res:
             # cause asked by <ll>//𝚂𝚊𝚢𝚊𝚗𝚝𝚑//<ll>
-            res_to_change = "resolution | 2560x1440"
+            res_to_change = "الابعاد | 2560x1440"
         elif '2560' in current_res:
-            res_to_change = "resolution | 640x480"
+            res_to_change = "الابعاد | 640x480"
         else:
             res_to_change = "resolution | 800x600"
         msg.reply_markup.inline_keyboard[-4][0]['text'] = res_to_change
-        await msg.edit(text='Choose the prefered settings', reply_markup=msg.reply_markup)
+        await msg.edit(text='اختار الاعدادات البدك ياها بيبي 🙂', reply_markup=msg.reply_markup)
 
     elif cb_data == "format":
         current_format = msg.reply_markup.inline_keyboard[0][0]
@@ -130,12 +130,12 @@ async def cb_(client: Client, callback_query: CallbackQuery, retry=False):
         if 'PDF' in format_to_change:
             if "Split" in msg.reply_markup.inline_keyboard[1][0].text:
                 msg.reply_markup.inline_keyboard.pop(1)
-        await msg.edit(text='Choose the prefered settings', reply_markup=msg.reply_markup)
+        await msg.edit(text='اختار الاعدادات البدك ياها بيبي 🙂', reply_markup=msg.reply_markup)
 
     elif cb_data == "cancel":
         await client.answer_callback_query(
             callback_query.id,
-            text='Canceled your request..!'
+            text='اوك الغيتلك طلبك 🙂!'
         )
         await msg.delete()
     elif cb_data == 'statics':
@@ -143,7 +143,7 @@ async def cb_(client: Client, callback_query: CallbackQuery, retry=False):
             'Processing the website...',
         )
         await msg.delete()
-        t = await msg.reply_text('<b>processing...</b>')
+        t = await msg.reply_text('<b>يلااا انطور شوي🙈...</b>')
         try:
             main_paper = await metrics_graber(msg.reply_to_message.text)
             await msg.reply_photo(main_paper)
